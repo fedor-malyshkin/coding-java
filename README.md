@@ -22,3 +22,7 @@ Some exercise in Java
 ```sh
 ./gradlew test
 ```
+
+## Code formatting
+
+I use `checktyle` (IDE settings + gradle's plugin to start it)
