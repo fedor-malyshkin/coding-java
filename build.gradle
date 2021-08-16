@@ -22,16 +22,16 @@ ext {
     COMMONS_MATH_VER = '3.6.1'
     COMMONS_COLL_VER = '4.4'
 
-    LOMBOK_VER = '1.18.16'
+    LOMBOK_VER = '1.18.20'
 
 // logging
     SLF4J_VER = '1.7.30'
     LOGBACK_VER = '1.2.3'
 
 // test
-    TEST_JUNIT_VER = '5.7.0'
-    TEST_MOCKITO_VER = '3.6.28'
-    TEST_ASSERTJ_VER = '3.18.1'
+    TEST_JUNIT_VER = '5.7.2'
+    TEST_MOCKITO_VER = '3.11.2'
+    TEST_ASSERTJ_VER = '3.20.2'
 }
 
 java {
@@ -51,8 +51,8 @@ dependencies {
     testCompileOnly "org.projectlombok:lombok:${LOMBOK_VER}"
     testAnnotationProcessor "org.projectlombok:lombok:${LOMBOK_VER}"
 
-    implementation group: 'org.apache.commons', name: 'commons-math3', version: COMMONS_MATH_VER
-    implementation group: 'org.apache.commons', name: 'commons-collections4', version: COMMONS_COLL_VER
+    implementation  "org.apache.commons:commons-math3:${COMMONS_MATH_VER}"
+    implementation  "org.apache.commons:commons-collections4:${COMMONS_COLL_VER}"
 
     // Logging
     implementation group: 'org.slf4j', name: 'slf4j-api', version: SLF4J_VER
