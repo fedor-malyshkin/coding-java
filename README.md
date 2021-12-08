@@ -1,7 +1,7 @@
 [![ci](https://github.com/fedor-malyshkin/coding-java/workflows/ci/badge.svg)](https://github.com/fedor-malyshkin/coding-java/actions/workflows/ci.yml)
 
 # coding-java
-Some exercise in Java
+Some exercise in Java 
 
 ## Requirements
 
@@ -9,6 +9,7 @@ Some exercise in Java
 
 ## Platforms/Courses
 
+* [Leetcode](https://leetcode.com)
 * [Udemy](http://udemy.com)
     * [Java Design Patterns & SOLID Design Principles](https://www.udemy.com/course/design-patterns-in-java-concepts-hands-on-projects) (a good list can be found on [Wiki](https://en.wikipedia.org/wiki/Software_design_pattern))
   
