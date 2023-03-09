@@ -9,7 +9,7 @@ buildscript {
 }
 
 plugins {
-    id 'checkstyle'
+//    id 'checkstyle'
 }
 
 
@@ -35,8 +35,8 @@ ext {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 repositories {
@@ -67,9 +67,6 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    reports {
-        junitXml.enabled = true
-    }
 }
 
 configurations {
@@ -78,8 +75,8 @@ configurations {
     }
 }
 
-checkstyle {
-    toolVersion = '8.41.1'
-    configFile = file("$projectDir/google_checks.xml")
-    ignoreFailures = true
-}
+//checkstyle {
+//    toolVersion = '8.41.1'
+//    configFile = file("$projectDir/google_checks.xml")
+//    ignoreFailures = true
+//}
