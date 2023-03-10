@@ -1,5 +1,7 @@
 package coding.leetcode.crashcourse;
 
+import java.util.HashSet;
+import java.util.Set;
 import lombok.experimental.UtilityClass;
 
 class Arrays {
@@ -100,5 +102,223 @@ class Arrays {
       return res;
     }
   }
+
+  /**
+   * <a href="https://leetcode.com/problems/max-consecutive-ones-iii/">1004. Max Consecutive Ones III</a>
+   */
+  @UtilityClass
+  class Problem1004 {
+
+    public int longestOnes(int[] nums, int k) {
+      int pl = 0;
+      int pr = 0;
+      int res = 0;
+      int zs = 0;
+      while (pr < nums.length) {
+        // right
+        while (pr < nums.length) {
+          if (zs == k && nums[pr] == 0) {
+            break;
+          }
+          if (nums[pr] == 0) {
+            zs++;
+          }
+          pr++;
+        }
+        res = Math.max(res, pr - pl);
+        // left
+        while (pl < nums.length) {
+          if (zs < k) {
+            break;
+          }
+          if (nums[pl] == 0) {
+            zs--;
+          }
+          pl++;
+        }
+
+      }
+
+      res = Math.max(res, pr - pl);
+      return res;
+    }
+
+  }
+
+
+  /**
+   * <a href="https://leetcode.com/problems/running-sum-of-1d-array/">1480. Running Sum of 1d Array</a>
+   */
+  @UtilityClass
+  class Problem1480 {
+
+    public int[] runningSum(int[] nums) {
+      int[] result = new int[nums.length];
+      result[0] = nums[0];
+      for (int i = 1; i < nums.length; i++) {
+        result[i] = nums[i] + result[i - 1];
+      }
+      return result;
+    }
+
+  }
+
+  /**
+   * <a href="https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/">1413. Minimum Value to Get Positive Step by Step Sum</a>
+   */
+  @UtilityClass
+  class Problem1413 {
+
+    public int minStartValue(int[] nums) {
+      var limit = 1;
+      var res = 1;
+      var acc = 1;
+      for (int num : nums) {
+        acc += num;
+        if (acc < limit) {
+          res += Math.abs(limit - acc);
+          acc = limit;
+        }
+      }
+      return res;
+    }
+
+  }
+
+  /**
+   * <a href="https://leetcode.com/problems/reverse-prefix-of-word/">2000. Reverse Prefix of Word</a>
+   */
+  @UtilityClass
+  class Problem2000 {
+
+    String reversePrefix(String word, char ch) {
+      var ca = word.toCharArray();
+      for (var p = 0; p < ca.length; p++) {
+        if (ca[p] == ch) {
+          reverseString(ca, 0, p);
+          return new String(ca);
+        }
+      }
+      return word;
+    }
+
+    void reverseString(char[] s, int left, int right) {
+      while (left < right) {
+        char tmp = s[left];
+        s[left++] = s[right];
+        s[right--] = tmp;
+      }
+    }
+  }
+
+
+  /**
+   * <a href="https://leetcode.com/problems/minimum-size-subarray-sum/">209. Minimum Size Subarray Sum</a>
+   */
+  @UtilityClass
+  class Problem209 {
+
+    public int minSubArrayLen(int target, int[] nums) {
+      var res = Integer.MAX_VALUE;
+      var sum = 0;
+      var pl = 0;
+      var pr = 0;
+      while (pr < nums.length) {
+        // reach sum
+        while (pr < nums.length && sum < target) {
+          sum += nums[pr];
+          pr++;
+          if (sum >= target) {
+            res = Math.min(res, pr - pl);
+          }
+        }
+        // shorten windows
+        while (pl < nums.length && sum >= target) {
+          sum -= nums[pl];
+          pl++;
+          if (sum >= target) {
+            res = Math.min(res, pr - pl);
+          }
+        }
+      }
+      return res == Integer.MAX_VALUE ? 0 : res;
+    }
+
+
+  }
+
+
+  /**
+   * <a href="https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/">1456. Maximum Number of Vowels in a Substring of Given Length</a>
+   */
+  @UtilityClass
+  class Problem1456 {
+
+    public int maxVowels(String s, int k) {
+      var vowels = Set.of('a', 'e', 'i', 'o', 'u');
+      var cs = s.toCharArray();
+      var pl = 0;
+      var pr = k;
+      var res = 0;
+      var acc = 0;
+      for (var i = 0; i < k; i++) {
+        if (vowels.contains(cs[i])) {
+          acc++;
+        }
+
+      }
+
+      res = Math.max(res, acc);
+      while (pr < cs.length) {
+        if (vowels.contains(cs[pr])) {
+          acc++;
+        }
+        pr++;
+        if (vowels.contains(cs[pl])) {
+          acc--;
+        }
+        pl++;
+        res = Math.max(res, acc);
+      }
+      return res;
+    }
+
+  }
+
+  /**
+   * <a href="https://leetcode.com/problems/get-equal-substrings-within-budget/">1208. Get Equal Substrings Within Budget</a>
+   */
+  @UtilityClass
+  class Problem1208 {
+
+    public int equalSubstring(String s, String t, int maxCost) {
+      var as = s.toCharArray();
+      var at = t.toCharArray();
+      var pl = 0;
+      var pr = 0;
+      var res = 0;
+      var cost = 0;
+      while (pr < as.length) {
+
+        while (pr < as.length && cost <= maxCost) {
+          cost += Math.abs(as[pr] - at[pr]);
+          pr++;
+          if (cost <= maxCost) {
+            res = Math.max(res, pr - pl);
+          }
+        }
+        // shorten windows
+        while (pl < as.length && cost > maxCost) {
+          cost -= Math.abs(as[pl] - at[pl]);
+          pl++;
+          if (cost <= maxCost) {
+            res = Math.max(res, pr - pl);
+          }
+        }
+      }
+      return res;
+    }
+  }
+
 
 }
