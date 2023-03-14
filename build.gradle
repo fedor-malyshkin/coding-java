@@ -95,6 +95,10 @@ compileTestKotlin {
     }
 }
 
+tasks.withType(Jar){
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
 //checkstyle {
 //    toolVersion = '8.41.1'
 //    configFile = file("$projectDir/google_checks.xml")
