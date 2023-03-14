@@ -5,10 +5,13 @@ import coding.leetcode.crashcourse.Arrays.Problem1208;
 import coding.leetcode.crashcourse.Arrays.Problem1413;
 import coding.leetcode.crashcourse.Arrays.Problem1456;
 import coding.leetcode.crashcourse.Arrays.Problem1480;
+import coding.leetcode.crashcourse.Arrays.Problem1732;
 import coding.leetcode.crashcourse.Arrays.Problem2000;
 import coding.leetcode.crashcourse.Arrays.Problem209;
+import coding.leetcode.crashcourse.Arrays.Problem303;
 import coding.leetcode.crashcourse.Arrays.Problem392;
 import coding.leetcode.crashcourse.Arrays.Problem643;
+import coding.leetcode.crashcourse.Arrays.Problem724;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -120,4 +123,47 @@ class ArraysTest {
         .as("tests case 3")
         .isEqualTo(1);
   }
+
+  @Test
+  void testProblem1732() {
+    Assertions.assertThat(Problem1732.largestAltitude(new int[] {-5, 1, 5, 0, -7}))
+        .as("tests case 1")
+        .isEqualTo(1);
+    Assertions.assertThat(Problem1732.largestAltitude(new int[] {-4, -3, -2, -1, 4, 3, 2}))
+        .as("tests case 2")
+        .isEqualTo(0);
+  }
+
+
+  @Test
+  void testProblem724() {
+    Assertions.assertThat(Problem724.pivotIndex(new int[] {1, 7, 3, 6, 5, 6}))
+        .as("tests case 1")
+        .isEqualTo(3);
+    Assertions.assertThat(Problem724.pivotIndex(new int[] {1, 2, 3}))
+        .as("tests case 2")
+        .isEqualTo(-1);
+    Assertions.assertThat(Problem724.pivotIndex(new int[] {2, 1, -1}))
+        .as("tests case 3")
+        .isEqualTo(0);
+    Assertions.assertThat(Problem724.pivotIndex(new int[] {0}))
+        .as("tests case 4")
+        .isEqualTo(0);
+  }
+
+
+  @Test
+  void testProblem303() {
+    var o = new Problem303.NumArray(new int[]{-2, 0, 3, -5, 2, -1});
+    Assertions.assertThat(o.sumRange(0, 2))
+        .as("tests case 1")
+        .isEqualTo(1);
+    Assertions.assertThat(o.sumRange(2, 5))
+        .as("tests case 2")
+        .isEqualTo(-1);
+    Assertions.assertThat(o.sumRange(0,5))
+        .as("tests case 3")
+        .isEqualTo(-3);
+  }
+
 }

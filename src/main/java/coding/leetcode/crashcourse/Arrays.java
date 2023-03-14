@@ -1,13 +1,12 @@
 package coding.leetcode.crashcourse;
 
-import java.util.HashSet;
 import java.util.Set;
 import lombok.experimental.UtilityClass;
 
 class Arrays {
 
   /**
-   * <a href="https://leetcode.com/problems/is-subsequence/">392. Is Subsequence</a>
+   * @see <a href="https://leetcode.com/problems/is-subsequence/">392. Is Subsequence</a>
    */
   @UtilityClass
   static class Problem392 {
@@ -31,7 +30,7 @@ class Arrays {
 
 
   /**
-   * <a href="https://leetcode.com/problems/reverse-string/">344. Reverse String</a>
+   * @see <a href="https://leetcode.com/problems/reverse-string/">344. Reverse String</a>
    */
   @UtilityClass
   class Problem344 {
@@ -48,7 +47,7 @@ class Arrays {
   }
 
   /**
-   * <a href="https://leetcode.com/problems/squares-of-a-sorted-array/">977. Squares of a Sorted Array</a>
+   * @see <a href="https://leetcode.com/problems/squares-of-a-sorted-array/">977. Squares of a Sorted Array</a>
    */
   @UtilityClass
   class Problem977 {
@@ -78,7 +77,7 @@ class Arrays {
 
 
   /**
-   * <a href="https://leetcode.com/problems/maximum-average-subarray-i/">643. Maximum Average Subarray I</a>
+   * @see <a href="https://leetcode.com/problems/maximum-average-subarray-i/">643. Maximum Average Subarray I</a>
    */
   @UtilityClass
   class Problem643 {
@@ -104,7 +103,7 @@ class Arrays {
   }
 
   /**
-   * <a href="https://leetcode.com/problems/max-consecutive-ones-iii/">1004. Max Consecutive Ones III</a>
+   * @see <a href="https://leetcode.com/problems/max-consecutive-ones-iii/">1004. Max Consecutive Ones III</a>
    */
   @UtilityClass
   class Problem1004 {
@@ -147,7 +146,7 @@ class Arrays {
 
 
   /**
-   * <a href="https://leetcode.com/problems/running-sum-of-1d-array/">1480. Running Sum of 1d Array</a>
+   * @see <a href="https://leetcode.com/problems/running-sum-of-1d-array/">1480. Running Sum of 1d Array</a>
    */
   @UtilityClass
   class Problem1480 {
@@ -164,7 +163,7 @@ class Arrays {
   }
 
   /**
-   * <a href="https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/">1413. Minimum Value to Get Positive Step by Step Sum</a>
+   * @see <a href="https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/">1413. Minimum Value to Get Positive Step by Step Sum</a>
    */
   @UtilityClass
   class Problem1413 {
@@ -186,7 +185,7 @@ class Arrays {
   }
 
   /**
-   * <a href="https://leetcode.com/problems/reverse-prefix-of-word/">2000. Reverse Prefix of Word</a>
+   * @see <a href="https://leetcode.com/problems/reverse-prefix-of-word/">2000. Reverse Prefix of Word</a>
    */
   @UtilityClass
   class Problem2000 {
@@ -213,7 +212,7 @@ class Arrays {
 
 
   /**
-   * <a href="https://leetcode.com/problems/minimum-size-subarray-sum/">209. Minimum Size Subarray Sum</a>
+   * @see <a href="https://leetcode.com/problems/minimum-size-subarray-sum/">209. Minimum Size Subarray Sum</a>
    */
   @UtilityClass
   class Problem209 {
@@ -249,7 +248,7 @@ class Arrays {
 
 
   /**
-   * <a href="https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/">1456. Maximum Number of Vowels in a Substring of Given Length</a>
+   * @see <a href="https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/">1456. Maximum Number of Vowels in a Substring of Given Length</a>
    */
   @UtilityClass
   class Problem1456 {
@@ -286,7 +285,7 @@ class Arrays {
   }
 
   /**
-   * <a href="https://leetcode.com/problems/get-equal-substrings-within-budget/">1208. Get Equal Substrings Within Budget</a>
+   * @see <a href="https://leetcode.com/problems/get-equal-substrings-within-budget/">1208. Get Equal Substrings Within Budget</a>
    */
   @UtilityClass
   class Problem1208 {
@@ -319,6 +318,97 @@ class Arrays {
       return res;
     }
   }
+
+  /**
+   * @see <a href="https://leetcode.com/problems/find-the-highest-altitude/">1732. Find the Highest Altitude</a>
+   */
+  @UtilityClass
+  class Problem1732 {
+
+    public int largestAltitude(int[] gain) {
+      var prev = 0;
+      var max = 0;
+      for (var g : gain) {
+        max = Math.max(max, prev + g);
+        prev = prev + g;
+      }
+      return max;
+    }
+  }
+
+  /**
+   * @see <a href="https://leetcode.com/problems/find-the-highest-altitude/">1732. Find the Highest Altitude</a>
+   */
+  @UtilityClass
+  class Problem724 {
+
+    public int pivotIndex(int[] nums) {
+      if (nums.length == 1) {
+        return 0;
+      }
+      var lrsa = new int[nums.length];
+      var rlsa = new int[nums.length];
+      var prev = 0;
+      for (var i = 0; i < nums.length; i++) {
+        lrsa[i] = prev + nums[i];
+        prev = lrsa[i];
+      }
+      prev = 0;
+      for (var i = nums.length - 1; i > -1; i--) {
+        rlsa[i] = prev + nums[i];
+        prev = rlsa[i];
+      }
+      if (rlsa[1] == 0) {
+        return 0;
+      }
+
+      for (var i = 1; i < nums.length - 1; i++) {
+        if (lrsa[i - 1] == rlsa[i + 1]) {
+          return i;
+        }
+      }
+
+      if (lrsa[nums.length - 2] == 0) {
+        return nums.length - 1;
+      }
+
+      return -1;
+    }
+
+  }
+
+  /**
+   * @see <a href="https://leetcode.com/problems/range-sum-query-immutable/">303. Range Sum Query - Immutable</a>
+   */
+
+  @UtilityClass
+  class Problem303 {
+
+    static class NumArray {
+
+      private int[] prefixSum;
+
+      public NumArray(int[] nums) {
+        buildArraySuffix(nums);
+      }
+
+      private void buildArraySuffix(int[] nums) {
+        prefixSum = new int[nums.length];
+        var prev = 0;
+        for (int i = 0; i < nums.length; i++) {
+          prefixSum[i] = prev + nums[i];
+          prev = prev + nums[i];
+        }
+      }
+
+      public int sumRange(int left, int right) {
+        return prefixSum[right] - (left == 0 ? 0 : prefixSum[left-1]);
+      }
+    }
+
+  }
+
+
 
 
 }
