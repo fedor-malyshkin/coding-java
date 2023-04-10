@@ -20,20 +20,6 @@ object LinkedLists {
             }
             return head
         }
-
-        fun deleteDuplicates2(head: ListNode?): ListNode? {
-            var iter: ListNode? = head
-
-            while (iter != null) {
-                if (iter?.`val` == iter?.next?.`val`) {
-                    iter?.next = iter?.next?.next
-                } else {
-                    iter = iter?.next
-                }
-            }
-
-            return head
-        }
     }
 
 
